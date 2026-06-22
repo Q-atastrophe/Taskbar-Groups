@@ -5,7 +5,7 @@ Group multiple app shortcuts into a single button on your Windows 11 taskbar. Cl
 A fresh, modern take on the long‑abandoned [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups), rebuilt from scratch for Windows 11.
 
 <!-- Add a screenshot: drop an image into the repo (e.g. screenshot.png) and uncomment the line below -->
-<!-- ![Taskbar Groups](screenshot.png) -->
+![Taskbar Groups](Demo.jpg)
 
 ## Features
 
