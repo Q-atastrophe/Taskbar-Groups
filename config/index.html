@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline';" />
+  <link rel="stylesheet" href="config.css" />
+  <title>Taskbar Groups</title>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <span>Taskbar Groups</span>
+    </div>
+    <button id="newGroup" class="btn btn-ghost">+ New group</button>
+    <ul id="groupList" class="group-list"></ul>
+  </aside>
+
+  <main class="editor" id="editor">
+    <div class="empty" id="emptyState">
+      <p>Make a group, add a few shortcuts, then pin it to your taskbar.</p>
+      <button id="newGroup2" class="btn btn-primary">Create your first group</button>
+    </div>
+
+    <div class="form" id="form" hidden>
+      <div class="row">
+        <label>Group name</label>
+        <input id="name" type="text" placeholder="e.g. Writing tools" />
+      </div>
+
+      <div class="row split">
+        <div>
+          <label>Taskbar icon</label>
+          <div class="icon-pick">
+            <div class="icon-preview" id="iconPreview"></div>
+            <button id="pickImage" class="btn btn-ghost">Choose image…</button>
+            <button id="clearImage" class="btn btn-ghost">Use color</button>
+          </div>
+        </div>
+        <div>
+          <label>Accent color</label>
+          <input id="color" type="color" value="#6c8cff" />
+        </div>
+        <div>
+          <label>Columns in popup</label>
+          <input id="columns" type="number" min="1" max="10" value="5" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="shortcuts-head">
+          <label>Shortcuts</label>
+          <button id="addShortcut" class="btn btn-ghost">+ Add shortcut</button>
+        </div>
+        <ul id="shortcutList" class="shortcut-list"></ul>
+      </div>
+
+      <div class="actions">
+        <button id="del" class="btn btn-danger">Delete group</button>
+        <div class="spacer"></div>
+        <button id="pin" class="btn btn-ghost">Pin to taskbar</button>
+        <button id="save" class="btn btn-primary">Save</button>
+      </div>
+
+      <div class="pin-tip" id="saveTip" hidden></div>
+      <div class="pin-tip" id="pinTip" hidden>
+        Explorer just opened on your group shortcut —
+        <strong>drag it onto the taskbar</strong> to pin it. You only need to do this once
+        per group; after that, saving changes updates it automatically.
+      </div>
+    </div>
+  </main>
+
+  <script src="config.js"></script>
+</body>
+</html>

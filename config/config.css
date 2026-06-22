@@ -1,0 +1,126 @@
+:root {
+  --bg: #16161c;
+  --panel: #1f1f28;
+  --panel-2: #262631;
+  --line: #33333f;
+  --text: #e7e7ee;
+  --muted: #9a9aa8;
+  --accent: #6c8cff;
+  --danger: #ff6c7a;
+  --radius: 10px;
+  --font: "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+/* The HTML hidden attribute must win even over elements that set display. */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+}
+
+/* ---- sidebar ---- */
+.sidebar {
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  padding: 2px 4px 6px;
+}
+.brand-mark {
+  width: 18px; height: 18px; border-radius: 5px;
+  background: linear-gradient(135deg, var(--accent), #b06cff);
+  box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset;
+}
+
+.group-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.group-list li {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 8px; cursor: pointer; color: var(--muted);
+}
+.group-list li:hover { background: var(--panel-2); color: var(--text); }
+.group-list li.active { background: var(--panel-2); color: var(--text); }
+.group-list .dot { width: 18px; height: 18px; border-radius: 5px; flex: 0 0 auto; object-fit: cover; }
+.group-list .count { margin-left: auto; font-size: 12px; color: var(--muted); }
+
+/* ---- editor ---- */
+.editor { padding: 28px 32px; overflow-y: auto; }
+
+.empty {
+  height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px; color: var(--muted);
+  text-align: center;
+}
+
+.form { max-width: 640px; display: flex; flex-direction: column; gap: 22px; }
+.row { display: flex; flex-direction: column; gap: 7px; }
+.row.split { flex-direction: row; gap: 20px; flex-wrap: wrap; }
+.row.split > div { display: flex; flex-direction: column; gap: 7px; }
+
+label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; }
+
+input[type="text"], input[type="number"] {
+  background: var(--panel); border: 1px solid var(--line); color: var(--text);
+  border-radius: 8px; padding: 9px 11px; font-family: var(--font); font-size: 14px;
+}
+input[type="text"]:focus, input[type="number"]:focus { outline: 2px solid var(--accent); border-color: transparent; }
+input[type="number"] { width: 90px; }
+input[type="color"] { width: 48px; height: 38px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 3px; }
+
+.icon-pick { display: flex; align-items: center; gap: 10px; }
+.icon-preview {
+  width: 38px; height: 38px; border-radius: 8px; background: var(--accent);
+  background-size: cover; background-position: center; border: 1px solid var(--line);
+}
+
+.shortcuts-head { display: flex; align-items: center; justify-content: space-between; }
+
+.shortcut-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.shortcut-list li {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+}
+.shortcut-list img.ico { width: 28px; height: 28px; border-radius: 5px; flex: 0 0 auto; }
+.shortcut-list .meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.shortcut-list .meta input { padding: 4px 6px; font-size: 13px; }
+.shortcut-list .path { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shortcut-list .remove { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 18px; padding: 4px 8px; }
+.shortcut-list .remove:hover { color: var(--danger); }
+
+/* ---- buttons ---- */
+.btn { font-family: var(--font); font-size: 13px; border-radius: 8px; padding: 9px 14px; cursor: pointer; border: 1px solid transparent; }
+.btn-primary { background: var(--accent); color: #0c0c14; font-weight: 600; }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { background: var(--panel-2); color: var(--text); border-color: var(--line); }
+.btn-ghost:hover { background: var(--line); }
+.btn-danger { background: transparent; color: var(--danger); border-color: transparent; }
+.btn-danger:hover { background: rgba(255,108,122,.12); }
+
+.actions { display: flex; align-items: center; gap: 10px; padding-top: 6px; }
+.actions .spacer { flex: 1; }
+
+.pin-tip { background: rgba(108,140,255,.1); border: 1px solid rgba(108,140,255,.3); color: var(--text); border-radius: 8px; padding: 12px 14px; line-height: 1.5; }
+.save-tip { background: rgba(255,255,255,.04); border: 1px solid var(--line); color: var(--muted); border-radius: 8px; padding: 10px 14px; line-height: 1.5; }

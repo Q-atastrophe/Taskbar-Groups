@@ -1,0 +1,30 @@
+{
+  "name": "taskbar-groups",
+  "productName": "Taskbar Groups",
+  "version": "0.1.0",
+  "description": "Group app shortcuts into a single pinnable taskbar button (Windows 11).",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "author": "Lily",
+  "license": "MIT",
+  "dependencies": {
+    "png-to-ico": "^2.1.8"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.lily.taskbargroups",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
