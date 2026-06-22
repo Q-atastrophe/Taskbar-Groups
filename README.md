@@ -1,64 +1,53 @@
-# Taskbar Groups (Electron prototype)
+# Taskbar Groups
 
-Group several app shortcuts into a single button you pin to the Windows 11
-taskbar. Clicking the button opens a small flyout above the taskbar with all
-the shortcuts in that group — a modern take on tjackenpacken/taskbar-groups.
+Group multiple app shortcuts into a single button on your Windows 11 taskbar. Click it and a small flyout opens just above the taskbar with everything in that group — pick one and it launches.
 
-## Run it (development)
+A fresh, modern take on the long‑abandoned [Taskbar Groups](https://github.com/tjackenpacken/taskbar-groups), rebuilt from scratch for Windows 11.
 
-You need Node.js installed (the LTS build from nodejs.org is fine).
+<!-- Add a screenshot: drop an image into the repo (e.g. screenshot.png) and uncomment the line below -->
+<!-- ![Taskbar Groups](screenshot.png) -->
 
-```
-cd taskbar-groups
+## Features
+
+- Bundle any apps, files, or folders into one taskbar button
+- A clean flyout that appears above the taskbar and closes when you click away
+- A custom icon per group — pick any image and it's auto‑cropped and rounded — or just a solid accent color
+- Adjustable grid size for the popup
+- Shortcut icons pulled straight from Windows, so they match what you see in Explorer
+- Runs quietly in the system tray, so groups open instantly
+
+## Install
+
+1. Download the latest installer from the [Releases page](https://github.com/Q-atastrophe/Taskbar-Groups/releases).
+2. Run it. The app isn't code‑signed, so Windows SmartScreen will show a "Windows protected your PC" warning — click **More info → Run anyway**. It's safe, just unsigned.
+3. Launch Taskbar Groups. It also lives in your system tray.
+
+## Usage
+
+1. Click **New group** and give it a name.
+2. **Add shortcut** for each app you want in the group (point it at the program's `.exe` or its shortcut).
+3. Optionally choose an icon and an accent color.
+4. Click **Save**, then **Pin to taskbar** — Explorer opens on the group's shortcut.
+5. Drag that shortcut onto your taskbar. Click it any time to open the group.
+
+> **Tip:** Set a group's icon *before* you pin it. Windows takes a snapshot of the icon at the moment you pin, so changing it afterward means unpinning and re‑pinning.
+
+## Build from source
+
+Requires [Node.js](https://nodejs.org).
+
+```bash
+git clone https://github.com/Q-atastrophe/Taskbar-Groups.git
+cd Taskbar-Groups
 npm install
-npm start
+npm start        # run in development
+npm run dist     # build a Windows installer into dist/
 ```
 
-The config window opens, and a tray icon appears (bottom-right, near the clock).
-The tray icon means the app is running in the background — that's what makes
-the popups appear instantly when you click a pinned group.
+## Built with
 
-## How to use it
+[Electron](https://www.electronjs.org/) · Windows 11
 
-1. Click **New group**, give it a name, and **Add shortcut** for each program
-   (point it at the program's `.exe` or its existing `.lnk` shortcut).
-2. Optionally pick an image for the group's taskbar icon and an accent color.
-3. Click **Save & pin**. Explorer opens on the generated shortcut.
-4. **Drag that shortcut onto your taskbar** to pin it.
-5. Click the pinned button — the group's flyout appears above the taskbar.
-   Click any tile to launch it.
+## License
 
-Pinning is a manual drag because Windows has no official "pin to taskbar" API —
-the original Taskbar Groups works the same way.
-
-## How it works (the short version)
-
-- One background process stays alive (the tray icon). It holds a single-instance
-  lock.
-- Each pinned button is a normal Windows shortcut whose target is this app, with
-  an argument like `--group=g123`.
-- When you click it, Windows launches the app again; the already-running process
-  catches that launch, reads the group id, and shows the flyout. The second
-  launch then exits. That hand-off is why the popup is fast.
-- Icons in the flyout come from Windows itself (`app.getFileIcon`), so they match
-  what you'd see in Explorer.
-
-## Build a Windows installer (later)
-
-```
-npm run dist
-```
-
-This uses electron-builder to produce an `.exe` installer in `dist/`. Once
-installed, the shortcuts point at the installed app instead of the dev build,
-so they keep working after you close VS Code.
-
-## Known rough edges (this is a v1 prototype)
-
-- First-ever click after a reboot is slightly slower until the tray process is
-  running. Opening the app once (or adding it to startup) keeps clicks instant.
-- The auto-generated group icon is a flat color square unless you choose an
-  image. A future version can compose a mini-grid of the contained app icons,
-  like the original does.
-- Shortcut reordering, drag-and-drop, and multiple-monitor edge cases aren't
-  handled yet.
+[MIT](LICENSE)
